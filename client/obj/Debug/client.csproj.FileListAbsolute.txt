@@ -27,3 +27,4 @@ D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.CoreCompileInputs.
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.CopyComplete
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.exe
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.pdb
+D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.AssemblyReference.cache
