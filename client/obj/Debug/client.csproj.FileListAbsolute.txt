@@ -22,7 +22,6 @@ D:\Code\gRPC\grpc-csharp-udemy\client\bin\Debug\System.Buffers.xml
 D:\Code\gRPC\grpc-csharp-udemy\client\bin\Debug\System.Memory.xml
 D:\Code\gRPC\grpc-csharp-udemy\client\bin\Debug\System.Numerics.Vectors.xml
 D:\Code\gRPC\grpc-csharp-udemy\client\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.AssemblyReference.cache
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.SuggestedBindingRedirects.cache
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.CoreCompileInputs.cache
 D:\Code\gRPC\grpc-csharp-udemy\client\obj\Debug\client.csproj.CopyComplete
