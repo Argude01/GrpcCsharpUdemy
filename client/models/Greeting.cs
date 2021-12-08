@@ -25,21 +25,21 @@ namespace Greet {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5ncmVldGluZy5wcm90bxIFZ3JlZXQiMQoIR3JlZXRpbmcSEgoKZmlyc3Rf",
-            "bmFtZRgBIAEoCRIRCglsYXN0X25hbWUYAiABKAkiNAoPR3JlZXRpbmdSZXF1",
-            "ZXN0EiEKCGdyZWV0aW5nGAEgASgLMg8uZ3JlZXQuR3JlZXRpbmciIgoQR3Jl",
-            "ZXRpbmdSZXNwb25zZRIOCgZyZXN1bHQYASABKAkiQQoYR3JlZXRpbmdNYW55",
-            "VGltZXNSZXF1ZXN0EiUKDGdyZWV0aW5nTWFueRgBIAEoCzIPLmdyZWV0Lkdy",
-            "ZWV0aW5nIioKGEdyZWV0aW5nTWFueVRpbWVzUmVwb25zZRIOCgZyZXN1bHQY",
-            "ASABKAkypQEKD0dyZWV0aW5nU2VydmljZRI6CgVHcmVldBIWLmdyZWV0Lkdy",
-            "ZWV0aW5nUmVxdWVzdBoXLmdyZWV0LkdyZWV0aW5nUmVzcG9uc2UiABJWCg5H",
-            "cmVldE1hbnlUaW1lcxIfLmdyZWV0LkdyZWV0aW5nTWFueVRpbWVzUmVxdWVz",
-            "dBofLmdyZWV0LkdyZWV0aW5nTWFueVRpbWVzUmVwb25zZSIAMAFiBnByb3Rv",
-            "Mw=="));
+            "bmFtZRgBIAEoCRIRCglsYXN0X25hbWUYAiABKAkiOAoPR3JlZXRpbmdSZXF1",
+            "ZXN0EiUKDGdyZWV0aW5nX3VueRgBIAEoCzIPLmdyZWV0LkdyZWV0aW5nIiIK",
+            "EEdyZWV0aW5nUmVzcG9uc2USDgoGcmVzdWx0GAEgASgJIkIKGEdyZWV0aW5n",
+            "TWFueVRpbWVzUmVxdWVzdBImCg1ncmVldGluZ19tYW55GAEgASgLMg8uZ3Jl",
+            "ZXQuR3JlZXRpbmciKgoYR3JlZXRpbmdNYW55VGltZXNSZXBvbnNlEg4KBnJl",
+            "c3VsdBgBIAEoCTKlAQoPR3JlZXRpbmdTZXJ2aWNlEjoKBUdyZWV0EhYuZ3Jl",
+            "ZXQuR3JlZXRpbmdSZXF1ZXN0GhcuZ3JlZXQuR3JlZXRpbmdSZXNwb25zZSIA",
+            "ElYKDkdyZWV0TWFueVRpbWVzEh8uZ3JlZXQuR3JlZXRpbmdNYW55VGltZXNS",
+            "ZXF1ZXN0Gh8uZ3JlZXQuR3JlZXRpbmdNYW55VGltZXNSZXBvbnNlIgAwAWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.Greeting), global::Greet.Greeting.Parser, new[]{ "FirstName", "LastName" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingRequest), global::Greet.GreetingRequest.Parser, new[]{ "Greeting" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingRequest), global::Greet.GreetingRequest.Parser, new[]{ "GreetingUny" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingResponse), global::Greet.GreetingResponse.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingManyTimesRequest), global::Greet.GreetingManyTimesRequest.Parser, new[]{ "GreetingMany" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingManyTimesReponse), global::Greet.GreetingManyTimesReponse.Parser, new[]{ "Result" }, null, null, null, null)
@@ -312,7 +312,7 @@ namespace Greet {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GreetingRequest(GreetingRequest other) : this() {
-      greeting_ = other.greeting_ != null ? other.greeting_.Clone() : null;
+      greetingUny_ = other.greetingUny_ != null ? other.greetingUny_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -322,15 +322,15 @@ namespace Greet {
       return new GreetingRequest(this);
     }
 
-    /// <summary>Field number for the "greeting" field.</summary>
-    public const int GreetingFieldNumber = 1;
-    private global::Greet.Greeting greeting_;
+    /// <summary>Field number for the "greeting_uny" field.</summary>
+    public const int GreetingUnyFieldNumber = 1;
+    private global::Greet.Greeting greetingUny_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Greet.Greeting Greeting {
-      get { return greeting_; }
+    public global::Greet.Greeting GreetingUny {
+      get { return greetingUny_; }
       set {
-        greeting_ = value;
+        greetingUny_ = value;
       }
     }
 
@@ -349,7 +349,7 @@ namespace Greet {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Greeting, other.Greeting)) return false;
+      if (!object.Equals(GreetingUny, other.GreetingUny)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -357,7 +357,7 @@ namespace Greet {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (greeting_ != null) hash ^= Greeting.GetHashCode();
+      if (greetingUny_ != null) hash ^= GreetingUny.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -376,9 +376,9 @@ namespace Greet {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (greeting_ != null) {
+      if (greetingUny_ != null) {
         output.WriteRawTag(10);
-        output.WriteMessage(Greeting);
+        output.WriteMessage(GreetingUny);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -390,9 +390,9 @@ namespace Greet {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (greeting_ != null) {
+      if (greetingUny_ != null) {
         output.WriteRawTag(10);
-        output.WriteMessage(Greeting);
+        output.WriteMessage(GreetingUny);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -404,8 +404,8 @@ namespace Greet {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (greeting_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Greeting);
+      if (greetingUny_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GreetingUny);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -419,11 +419,11 @@ namespace Greet {
       if (other == null) {
         return;
       }
-      if (other.greeting_ != null) {
-        if (greeting_ == null) {
-          Greeting = new global::Greet.Greeting();
+      if (other.greetingUny_ != null) {
+        if (greetingUny_ == null) {
+          GreetingUny = new global::Greet.Greeting();
         }
-        Greeting.MergeFrom(other.Greeting);
+        GreetingUny.MergeFrom(other.GreetingUny);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -441,10 +441,10 @@ namespace Greet {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (greeting_ == null) {
-              Greeting = new global::Greet.Greeting();
+            if (greetingUny_ == null) {
+              GreetingUny = new global::Greet.Greeting();
             }
-            input.ReadMessage(Greeting);
+            input.ReadMessage(GreetingUny);
             break;
           }
         }
@@ -463,10 +463,10 @@ namespace Greet {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            if (greeting_ == null) {
-              Greeting = new global::Greet.Greeting();
+            if (greetingUny_ == null) {
+              GreetingUny = new global::Greet.Greeting();
             }
-            input.ReadMessage(Greeting);
+            input.ReadMessage(GreetingUny);
             break;
           }
         }
@@ -712,7 +712,7 @@ namespace Greet {
       return new GreetingManyTimesRequest(this);
     }
 
-    /// <summary>Field number for the "greetingMany" field.</summary>
+    /// <summary>Field number for the "greeting_many" field.</summary>
     public const int GreetingManyFieldNumber = 1;
     private global::Greet.Greeting greetingMany_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

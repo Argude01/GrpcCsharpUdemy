@@ -9,7 +9,7 @@ message Greeting {
 }
 
 message GreetingRequest {
-	Greeting greeting = 1;
+	Greeting greeting_uny = 1;
 }
 
 message GreetingResponse {
@@ -18,7 +18,7 @@ message GreetingResponse {
 
 // Stream API
 message GreetingManyTimesRequest {
-	Greeting greetingMany = 1;
+	Greeting greeting_many = 1;
 }
 
 message GreetingManyTimesReponse {
