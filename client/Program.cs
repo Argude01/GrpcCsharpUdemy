@@ -19,6 +19,7 @@ namespace client
             {
                 if (task.Status == TaskStatus.RanToCompletion)
                     Console.WriteLine("The client connected successfully");
+                Console.WriteLine();
             });
 
             // Testing GreetingService
@@ -33,29 +34,30 @@ namespace client
                 LastName = "Gutierrez"
             };
 
-            // --- Unary API
-            //var request = new GreetingRequest() { GreetingUny = greeting };
-            
-            //var response = client.Greet(request);
-            //Console.WriteLine("Response: " + response.Result);
+            // 1) --- Unary API
+            var requestUny = new GreetingRequest() { GreetingUny = greeting };
 
-            // --- Stream API SERVER
-            //var request = new GreetingManyTimesRequest { GreetingMany = greeting };
-            //var response = client.GreetManyTimes(request);
+            var responseUny = client.Greet(requestUny);
+            Console.WriteLine("ResponseUny: " + responseUny.Result);
+            Console.WriteLine();
 
-            //while (await response.ResponseStream.MoveNext())
-            //{
-            //    Console.WriteLine(response.ResponseStream.Current.Result);
-            //    await Task.Delay(200);
-            //}
+            // 2) --- Stream API SERVER
+            var requestStreamServer = new GreetingManyTimesRequest { GreetingMany = greeting };
+            var responseMany = client.GreetManyTimes(requestStreamServer);
 
-            // --- Stream API CLIENT
-            var request  = new LongGreetingRequest { LongGreeting = greeting };
+            while (await responseMany.ResponseStream.MoveNext())
+            {
+                Console.WriteLine(responseMany.ResponseStream.Current.Result);
+                await Task.Delay(200);
+            }
+
+            // 3) --- Stream API CLIENT
+            var requestStreamClient  = new LongGreetingRequest { LongGreeting = greeting };
             var stream = client.LongGreet();
 
             foreach (int i in Enumerable.Range(1, 10))
             {
-                await stream.RequestStream.WriteAsync(request);
+                await stream.RequestStream.WriteAsync(requestStreamClient);
             }
 
             await stream.RequestStream.CompleteAsync();
