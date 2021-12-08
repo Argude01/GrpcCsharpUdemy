@@ -31,14 +31,14 @@ namespace Greet {
             "TWFueVRpbWVzUmVxdWVzdBImCg1ncmVldGluZ19tYW55GAEgASgLMg8uZ3Jl",
             "ZXQuR3JlZXRpbmciKgoYR3JlZXRpbmdNYW55VGltZXNSZXBvbnNlEg4KBnJl",
             "c3VsdBgBIAEoCSI9ChNMb25nR3JlZXRpbmdSZXF1ZXN0EiYKDWxvbmdfZ3Jl",
-            "ZXRpbmcYASABKAsyDy5ncmVldC5HcmVldGluZyIlChRMb25nR3JlZXRpbmdS",
-            "ZXNwb25zZRINCgVyZXN1dBgBIAEoCTLvAQoPR3JlZXRpbmdTZXJ2aWNlEjoK",
-            "BUdyZWV0EhYuZ3JlZXQuR3JlZXRpbmdSZXF1ZXN0GhcuZ3JlZXQuR3JlZXRp",
-            "bmdSZXNwb25zZSIAElYKDkdyZWV0TWFueVRpbWVzEh8uZ3JlZXQuR3JlZXRp",
-            "bmdNYW55VGltZXNSZXF1ZXN0Gh8uZ3JlZXQuR3JlZXRpbmdNYW55VGltZXNS",
-            "ZXBvbnNlIgAwARJICglMb25nR3JlZXQSGi5ncmVldC5Mb25nR3JlZXRpbmdS",
-            "ZXF1ZXN0GhsuZ3JlZXQuTG9uZ0dyZWV0aW5nUmVzcG9uc2UiACgBYgZwcm90",
-            "bzM="));
+            "ZXRpbmcYASABKAsyDy5ncmVldC5HcmVldGluZyImChRMb25nR3JlZXRpbmdS",
+            "ZXNwb25zZRIOCgZyZXN1bHQYASABKAky7wEKD0dyZWV0aW5nU2VydmljZRI6",
+            "CgVHcmVldBIWLmdyZWV0LkdyZWV0aW5nUmVxdWVzdBoXLmdyZWV0LkdyZWV0",
+            "aW5nUmVzcG9uc2UiABJWCg5HcmVldE1hbnlUaW1lcxIfLmdyZWV0LkdyZWV0",
+            "aW5nTWFueVRpbWVzUmVxdWVzdBofLmdyZWV0LkdyZWV0aW5nTWFueVRpbWVz",
+            "UmVwb25zZSIAMAESSAoJTG9uZ0dyZWV0EhouZ3JlZXQuTG9uZ0dyZWV0aW5n",
+            "UmVxdWVzdBobLmdyZWV0LkxvbmdHcmVldGluZ1Jlc3BvbnNlIgAoAWIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -48,7 +48,7 @@ namespace Greet {
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingManyTimesRequest), global::Greet.GreetingManyTimesRequest.Parser, new[]{ "GreetingMany" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.GreetingManyTimesReponse), global::Greet.GreetingManyTimesReponse.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Greet.LongGreetingRequest), global::Greet.LongGreetingRequest.Parser, new[]{ "LongGreeting" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Greet.LongGreetingResponse), global::Greet.LongGreetingResponse.Parser, new[]{ "Resut" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Greet.LongGreetingResponse), global::Greet.LongGreetingResponse.Parser, new[]{ "Result" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1296,7 +1296,7 @@ namespace Greet {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LongGreetingResponse(LongGreetingResponse other) : this() {
-      resut_ = other.resut_;
+      result_ = other.result_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1306,15 +1306,15 @@ namespace Greet {
       return new LongGreetingResponse(this);
     }
 
-    /// <summary>Field number for the "resut" field.</summary>
-    public const int ResutFieldNumber = 1;
-    private string resut_ = "";
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private string result_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Resut {
-      get { return resut_; }
+    public string Result {
+      get { return result_; }
       set {
-        resut_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        result_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1333,7 +1333,7 @@ namespace Greet {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Resut != other.Resut) return false;
+      if (Result != other.Result) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1341,7 +1341,7 @@ namespace Greet {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Resut.Length != 0) hash ^= Resut.GetHashCode();
+      if (Result.Length != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1360,9 +1360,9 @@ namespace Greet {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Resut.Length != 0) {
+      if (Result.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Resut);
+        output.WriteString(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1374,9 +1374,9 @@ namespace Greet {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Resut.Length != 0) {
+      if (Result.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(Resut);
+        output.WriteString(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1388,8 +1388,8 @@ namespace Greet {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Resut.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Resut);
+      if (Result.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1403,8 +1403,8 @@ namespace Greet {
       if (other == null) {
         return;
       }
-      if (other.Resut.Length != 0) {
-        Resut = other.Resut;
+      if (other.Result.Length != 0) {
+        Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1422,7 +1422,7 @@ namespace Greet {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            Resut = input.ReadString();
+            Result = input.ReadString();
             break;
           }
         }
@@ -1441,7 +1441,7 @@ namespace Greet {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            Resut = input.ReadString();
+            Result = input.ReadString();
             break;
           }
         }

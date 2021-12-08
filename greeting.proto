@@ -31,7 +31,7 @@ message LongGreetingRequest {
 }
 
 message LongGreetingResponse {
-	string resut = 1;
+	string result = 1;
 }
 
 service GreetingService {

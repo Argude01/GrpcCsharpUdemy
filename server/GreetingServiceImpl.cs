@@ -21,12 +21,27 @@ namespace server
             Console.WriteLine("The server received the request: ");
             Console.WriteLine(request.ToString());
 
-            string result = String.Format("Hello, {0} {1}.", request.GreetingMany.FirstName, request.GreetingMany.LastName);
+            string result = String.Format("Server stream response: {0} {1}.", request.GreetingMany.FirstName, request.GreetingMany.LastName);
 
             foreach (int i in Enumerable.Range(1, 10))
             {
                 await responseStream.WriteAsync(new GreetingManyTimesReponse() { Result = result });
             }
+        }
+
+        public override async Task<LongGreetingResponse> LongGreet(IAsyncStreamReader<LongGreetingRequest> requestStream, ServerCallContext context)
+        {
+            string result = "";
+
+            while(await requestStream.MoveNext())
+            {
+                result += String.Format("Hello {0} {1} {2}",
+                    requestStream.Current.LongGreeting.FirstName,
+                    requestStream.Current.LongGreeting.LastName,
+                    Environment.NewLine);
+            }
+
+            return new LongGreetingResponse() { Result = result };  
         }
     }
 }
