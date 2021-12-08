@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package greet;
 
+// Unary API
 message Greeting {
 	string first_name = 1;
 	string last_name = 2;
@@ -15,7 +16,20 @@ message GreetingResponse {
 	string result = 1;
 }
 
+// Stream API
+message GreetingManyTimesRequest {
+	Greeting greetingMany = 1;
+}
+
+message GreetingManyTimesReponse {
+	string result = 1;
+}
+
 service GreetingService {
+	// Unary
 	rpc Greet (GreetingRequest) returns (GreetingResponse) {}
+	
+	// Server streaming
+	rpc GreetManyTimes (GreetingManyTimesRequest) returns (stream GreetingManyTimesReponse) {}
 }
 
