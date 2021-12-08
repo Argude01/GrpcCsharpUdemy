@@ -1,4 +1,6 @@
-﻿using Grpc.Core;
+﻿using Calculator;
+using Greet;
+using Grpc.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +21,10 @@ namespace server
             {
                 server = new Server()
                 {
+                    Services = { 
+                        GreetingService.BindService( new GreetingServiceImpl() ),
+                        CalculatorService.BindService( new CalculatorServiceImpl() )                    
+                    },
                     Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
                 };
                 server.Start();
