@@ -34,6 +34,15 @@ message LongGreetingResponse {
 	string result = 1;
 }
 
+// Bidi Stream API
+message GreetingEveryoneRequest {
+	Greeting greeting_everyone = 1;
+}
+
+message GreetingEveryoneResponse {
+	string result = 1;
+}
+
 service GreetingService {
 	// Unary
 	rpc Greet (GreetingRequest) returns (GreetingResponse) {}
@@ -43,5 +52,8 @@ service GreetingService {
 
 	// Client streaming
 	rpc LongGreet (stream LongGreetingRequest) returns (LongGreetingResponse) {}
+
+	// Bidi streaming
+	rpc GreetEveryone (stream GreetingEveryoneRequest) returns (stream GreetingEveryoneResponse) {}
 }
 
