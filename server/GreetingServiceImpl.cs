@@ -23,7 +23,7 @@ namespace server
             Console.WriteLine("The server received the request: ");
             Console.WriteLine(request.ToString());
 
-            string result = String.Format("Server stream response: {0} {1}.", request.GreetingMany.FirstName, request.GreetingMany.LastName);
+            string result = String.Format("GreetManyTimes: {0} {1}.", request.GreetingMany.FirstName, request.GreetingMany.LastName);
 
             foreach (int i in Enumerable.Range(1, 10))
             {
@@ -38,7 +38,7 @@ namespace server
 
             while(await requestStream.MoveNext())
             {
-                result += String.Format("Hello {0} {1} {2}",
+                result += String.Format("LongGreet: {0} {1} {2}",
                     requestStream.Current.LongGreeting.FirstName,
                     requestStream.Current.LongGreeting.LastName,
                     Environment.NewLine);
@@ -57,7 +57,7 @@ namespace server
                                             requestStream.Current.GreetingEveryone.LastName
                                             );
 
-                Console.WriteLine("Receive : " + result);
+                Console.WriteLine("Received : " + result);
                 await responseStream.WriteAsync(new GreetingEveryoneResponse() { Result = result });
             }
         }
