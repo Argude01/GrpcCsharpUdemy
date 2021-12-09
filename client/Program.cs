@@ -3,6 +3,7 @@ using Dummy;
 using Greet;
 using Grpc.Core;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,9 +29,10 @@ namespace client
             //var client = new DummyService.DummyServiceClient(channel);
             var client = new GreetingService.GreetingServiceClient(channel);
 
-            DoSimpleGreet(client); 
-            await DoManyGreetings(client);
-            await DoLongGreet(client);
+            //DoSimpleGreet(client); 
+            //await DoManyGreetings(client);
+            //await DoLongGreet(client);
+             await DoGreetEveryone(client);
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();
@@ -111,5 +113,37 @@ namespace client
 
             Console.WriteLine(response.Result);
         }    
+
+        // 4) --- Bidi Stream API
+        public static async Task DoGreetEveryone(GreetingService.GreetingServiceClient client)
+        {
+            var stream = client.GreetEveryone();
+
+            var responseReaderTask = Task.Run(async () =>
+            {
+                while (await stream.ResponseStream.MoveNext())
+                {
+                    Console.WriteLine("Response-Bidi: " + stream.ResponseStream.Current.Result);
+                }
+            });
+
+            Greeting[] greetings =
+            {
+                new Greeting() { FirstName = "Deyanira", LastName = "Gutierrez" },
+                new Greeting() { FirstName = "Deyanira", LastName = "Gutierrez" },
+                new Greeting() { FirstName = "Deyanira", LastName = "Gutierrez" }
+            };
+
+            foreach (var greeting in greetings)
+            {
+                await stream.RequestStream.WriteAsync(new GreetingEveryoneRequest()
+                {
+                    GreetingEveryone = greeting
+                });
+            }
+
+            await stream.RequestStream.CompleteAsync();
+            await responseReaderTask;
+        }
     }
 }

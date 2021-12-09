@@ -48,7 +48,7 @@ namespace server
         }
 
         // Bidi Stream API implementation
-        public override async Task GreetingEveryone(IAsyncStreamReader<GreetingEveryoneRequest> requestStream, IServerStreamWriter<GreetingEveryoneResponse> responseStream, ServerCallContext context)
+        public override async Task GreetEveryone(IAsyncStreamReader<GreetingEveryoneRequest> requestStream, IServerStreamWriter<GreetingEveryoneResponse> responseStream, ServerCallContext context)
         {
             while (await requestStream.MoveNext())
             {
