@@ -9,6 +9,7 @@ namespace server
 {
     public class GreetingServiceImpl : GreetingServiceBase
     {
+        // Unary API implementation
         public override Task<GreetingResponse> Greet(GreetingRequest request, ServerCallContext context)
         {
             string result = String.Format("hello {0} {1}", request.GreetingUny.FirstName, request.GreetingUny.LastName);
@@ -16,6 +17,7 @@ namespace server
             return Task.FromResult(new GreetingResponse() { Result = result });
         }
 
+        // Server Stream API implementation
         public override async Task GreetManyTimes(GreetingManyTimesRequest request, IServerStreamWriter<GreetingManyTimesReponse> responseStream, ServerCallContext context)
         {
             Console.WriteLine("The server received the request: ");
@@ -29,6 +31,7 @@ namespace server
             }
         }
 
+        // Client Stream API implementation
         public override async Task<LongGreetingResponse> LongGreet(IAsyncStreamReader<LongGreetingRequest> requestStream, ServerCallContext context)
         {
             string result = "";
@@ -42,6 +45,21 @@ namespace server
             }
 
             return new LongGreetingResponse() { Result = result };  
+        }
+
+        // Bidi Stream API implementation
+        public override async Task GreetingEveryone(IAsyncStreamReader<GreetingEveryoneRequest> requestStream, IServerStreamWriter<GreetingEveryoneResponse> responseStream, ServerCallContext context)
+        {
+            while (await requestStream.MoveNext())
+            {
+                var result = String.Format("Hello {0} {1}",
+                                            requestStream.Current.GreetingEveryone.FirstName,
+                                            requestStream.Current.GreetingEveryone.LastName
+                                            );
+
+                Console.WriteLine("Receive : " + result);
+                await responseStream.WriteAsync(new GreetingEveryoneResponse() { Result = result });
+            }
         }
     }
 }
