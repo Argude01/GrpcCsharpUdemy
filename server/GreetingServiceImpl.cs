@@ -57,7 +57,7 @@ namespace server
                                             requestStream.Current.GreetingEveryone.LastName
                                             );
 
-                Console.WriteLine("Received : " + result);
+                Console.WriteLine("Sending : " + result);
                 await responseStream.WriteAsync(new GreetingEveryoneResponse() { Result = result });
             }
         }

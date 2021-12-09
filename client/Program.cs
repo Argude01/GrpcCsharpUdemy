@@ -123,7 +123,7 @@ namespace client
             {
                 while (await stream.ResponseStream.MoveNext())
                 {
-                    Console.WriteLine("Response-Bidi: " + stream.ResponseStream.Current.Result);
+                    Console.WriteLine("RECEIVED - Response-Bidi: " + stream.ResponseStream.Current.Result);
                 }
             });
 
@@ -136,6 +136,7 @@ namespace client
 
             foreach (var greeting in greetings)
             {
+                Console.WriteLine("Sending : " + greeting.ToString());
                 await stream.RequestStream.WriteAsync(new GreetingEveryoneRequest()
                 {
                     GreetingEveryone = greeting
