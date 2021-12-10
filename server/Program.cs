@@ -1,5 +1,6 @@
 ﻿using Calculator;
 using Greet;
+using Greetdeadline;
 using Grpc.Core;
 using Sqrt;
 using System;
@@ -25,7 +26,8 @@ namespace server
                     Services = { 
                         GreetingService.BindService( new GreetingServiceImpl() ),
                         SqrtService.BindService( new SqrtServiceImpl() ),
-                        CalculatorService.BindService( new CalculatorServiceImpl() )                    
+                        CalculatorService.BindService( new CalculatorServiceImpl() ),
+                        GreetdeadlineService.BindService( new GreetdeadlineServiceImpl() )                    
                     },
                     Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
                 };

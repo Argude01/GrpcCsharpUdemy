@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{AE07B3CD
 	ProjectSection(SolutionItems) = preProject
 		calculator.proto = calculator.proto
 		dummy.proto = dummy.proto
+		greetdeadline.proto = greetdeadline.proto
 		greeting.proto = greeting.proto
 		sqrt.proto = sqrt.proto
 	EndProjectSection

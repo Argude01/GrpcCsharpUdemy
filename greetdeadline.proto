@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package greetdeadline;
+
+message GreetdeadlineRequest {
+	string message = 1;
+}
+
+message GreetdeadlineResponse {
+	string result = 1;
+}
+
+service GreetdeadlineService {
+	rpc Greetdeadline (GreetdeadlineRequest) returns (GreetdeadlineResponse) {}
+}

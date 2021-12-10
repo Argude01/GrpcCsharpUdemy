@@ -1,6 +1,7 @@
 ﻿using Calculator;
 using Dummy;
 using Greet;
+using Greetdeadline;
 using Grpc.Core;
 using Sqrt;
 using System;
@@ -71,6 +72,25 @@ namespace client
             catch (RpcException e)
             {
                 Console.WriteLine("ERROR : " + e.Status.Detail + " _ " + e.StatusCode);
+            }
+
+            sqrtChannel.ShutdownAsync().Wait();
+            Console.ReadKey();
+
+            // GreetdeadlineService with ERROR Handler
+            // ===================================================================
+            Channel deadlineChannel = new Channel(target, ChannelCredentials.Insecure);
+            var deadlineClient = new GreetdeadlineService.GreetdeadlineServiceClient(deadlineChannel);
+
+            try
+            {
+                var response = deadlineClient.Greetdeadline(new GreetdeadlineRequest() { Message = "Hello gRPC with deadlines :)" },
+                                                            deadline: DateTime.UtcNow.AddMilliseconds(500));
+                Console.WriteLine(response.Result);
+            }
+            catch (RpcException e) when (e.StatusCode == StatusCode.DeadlineExceeded)
+            {
+                Console.WriteLine("Error : " + e.Status.Detail);
             }
 
             sqrtChannel.ShutdownAsync().Wait();
