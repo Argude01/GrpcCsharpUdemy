@@ -30,9 +30,9 @@ namespace client
             //var client = new DummyService.DummyServiceClient(channel);
             var client = new GreetingService.GreetingServiceClient(channel);
 
-            //DoSimpleGreet(client); 
-            //await DoManyGreetings(client);
-            //await DoLongGreet(client);
+            DoSimpleGreet(client);
+            await DoManyGreetings(client);
+            await DoLongGreet(client);
             await DoGreetEveryone(client);
 
             channel.ShutdownAsync().Wait();
@@ -55,7 +55,7 @@ namespace client
             calculatorChannel.ShutdownAsync().Wait();
             Console.ReadKey();
 
-            // SqrtService
+            // SqrtService with ERROR Handler
             // ===================================================================
             Channel sqrtChannel = new Channel(target, ChannelCredentials.Insecure);
             var sqrtClient = new SqrtService.SqrtServiceClient(sqrtChannel);
@@ -70,13 +70,15 @@ namespace client
             }
             catch (RpcException e)
             {
-                Console.WriteLine("ERROR : " + e.Status.Detail);
+                Console.WriteLine("ERROR : " + e.Status.Detail + " _ " + e.StatusCode);
             }
 
             sqrtChannel.ShutdownAsync().Wait();
             Console.ReadKey();
 
         }
+
+
 
         // 1) --- Unary API
         public static void DoSimpleGreet(GreetingService.GreetingServiceClient client)
