@@ -2,6 +2,7 @@
 using Dummy;
 using Greet;
 using Grpc.Core;
+using Sqrt;
 using System;
 using System.IO;
 using System.Linq;
@@ -32,12 +33,12 @@ namespace client
             //DoSimpleGreet(client); 
             //await DoManyGreetings(client);
             //await DoLongGreet(client);
-             await DoGreetEveryone(client);
+            await DoGreetEveryone(client);
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();
 
-            
+
             // CalculatorService
             // ===================================================================
             Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
@@ -52,7 +53,29 @@ namespace client
             var responseCalculator = calculatorClient.Sum(requestCalculator);
             Console.WriteLine(responseCalculator.Result);
             calculatorChannel.ShutdownAsync().Wait();
-            Console.ReadKey();  
+            Console.ReadKey();
+
+            // SqrtService
+            // ===================================================================
+            Channel sqrtChannel = new Channel(target, ChannelCredentials.Insecure);
+            var sqrtClient = new SqrtService.SqrtServiceClient(sqrtChannel);
+            int number = -1;
+
+            try
+            {
+                var response = sqrtClient.sqrt(new SqrtRequest() { Number = number });
+
+                Console.WriteLine(response.SquareRoot);
+
+            }
+            catch (RpcException e)
+            {
+                Console.WriteLine("ERROR : " + e.Status.Detail);
+            }
+
+            sqrtChannel.ShutdownAsync().Wait();
+            Console.ReadKey();
+
         }
 
         // 1) --- Unary API
