@@ -21,6 +21,13 @@ namespace server
             Server server = null;
             try
             {
+                var serverCert = File.ReadAllText("ssl/server.crt");
+                var serverKey = File.ReadAllText("ssl/server.key");
+                var keypair = new KeyCertificatePair(serverCert, serverKey);
+                var cacert = File.ReadAllText("ssl/ca.crt");
+
+                var credentials = new SslServerCredentials(new List<KeyCertificatePair>() { keypair }, cacert, true);
+
                 server = new Server()
                 {
                     Services = { 
@@ -29,7 +36,10 @@ namespace server
                         CalculatorService.BindService( new CalculatorServiceImpl() ),
                         GreetdeadlineService.BindService( new GreetdeadlineServiceImpl() )                    
                     },
-                    Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+                    Ports = { 
+                        new ServerPort("localhost", Port, credentials) 
+                    },
+                    //Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
                 };
                 server.Start();
                 Console.WriteLine("The server is listening on the port : " + Port);

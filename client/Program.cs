@@ -16,7 +16,14 @@ namespace client
         const string target = "127.0.0.1:50051";
         static async Task Main(string[] args)
         {
-            Channel channel = new Channel(target, ChannelCredentials.Insecure);
+            var clientCert = File.ReadAllText("ssl/client.crt");
+            var clientKey = File.ReadAllText("ssl/client.key");
+            var caCrt = File.ReadAllText("ssl/ca.crt");
+
+            var channelCredentials = new SslCredentials(caCrt, new KeyCertificatePair(clientCert, clientKey));  
+
+            //Channel channel = new Channel(target, ChannelCredentials.Insecure);
+            Channel channel = new Channel("localhost", 50051, channelCredentials);
 
             await channel.ConnectAsync().ContinueWith((task) =>
             {
@@ -32,72 +39,71 @@ namespace client
             var client = new GreetingService.GreetingServiceClient(channel);
 
             DoSimpleGreet(client);
-            await DoManyGreetings(client);
-            await DoLongGreet(client);
-            await DoGreetEveryone(client);
+            //await DoManyGreetings(client);
+            //await DoLongGreet(client);
+            //await DoGreetEveryone(client);
 
             channel.ShutdownAsync().Wait();
             Console.ReadKey();
 
 
-            // CalculatorService
-            // ===================================================================
-            Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
-            var calculatorClient = new CalculatorService.CalculatorServiceClient(calculatorChannel);
+            //// CalculatorService
+            //// ===================================================================
+            //Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
+            //var calculatorClient = new CalculatorService.CalculatorServiceClient(calculatorChannel);
 
-            var requestCalculator = new OperationRequest()
-            {
-                Number1 = 10,
-                Number2 = 3
-            };
+            //var requestCalculator = new OperationRequest()
+            //{
+            //    Number1 = 10,
+            //    Number2 = 3
+            //};
 
-            var responseCalculator = calculatorClient.Sum(requestCalculator);
-            Console.WriteLine(responseCalculator.Result);
-            calculatorChannel.ShutdownAsync().Wait();
-            Console.ReadKey();
+            //var responseCalculator = calculatorClient.Sum(requestCalculator);
+            //Console.WriteLine(responseCalculator.Result);
+            //calculatorChannel.ShutdownAsync().Wait();
+            //Console.ReadKey();
 
             // SqrtService with ERROR Handler
             // ===================================================================
-            Channel sqrtChannel = new Channel(target, ChannelCredentials.Insecure);
-            var sqrtClient = new SqrtService.SqrtServiceClient(sqrtChannel);
-            int number = -1;
+            //Channel sqrtChannel = new Channel(target, ChannelCredentials.Insecure);
+            //var sqrtClient = new SqrtService.SqrtServiceClient(sqrtChannel);
+            //int number = -1;
 
-            try
-            {
-                var response = sqrtClient.sqrt(new SqrtRequest() { Number = number });
+            //try
+            //{
+            //    var response = sqrtClient.sqrt(new SqrtRequest() { Number = number });
 
-                Console.WriteLine(response.SquareRoot);
+            //    Console.WriteLine(response.SquareRoot);
 
-            }
-            catch (RpcException e)
-            {
-                Console.WriteLine("ERROR : " + e.Status.Detail + " _ " + e.StatusCode);
-            }
+            //}
+            //catch (RpcException e)
+            //{
+            //    Console.WriteLine("ERROR : " + e.Status.Detail + " _ " + e.StatusCode);
+            //}
 
-            sqrtChannel.ShutdownAsync().Wait();
-            Console.ReadKey();
+            //sqrtChannel.ShutdownAsync().Wait();
+            //Console.ReadKey();
 
             // GreetdeadlineService with ERROR Handler
             // ===================================================================
-            Channel deadlineChannel = new Channel(target, ChannelCredentials.Insecure);
-            var deadlineClient = new GreetdeadlineService.GreetdeadlineServiceClient(deadlineChannel);
+            //Channel deadlineChannel = new Channel(target, ChannelCredentials.Insecure);
+            //var deadlineClient = new GreetdeadlineService.GreetdeadlineServiceClient(deadlineChannel);
 
-            try
-            {
-                var response = deadlineClient.Greetdeadline(new GreetdeadlineRequest() { Message = "Hello gRPC with deadlines :)" },
-                                                            deadline: DateTime.UtcNow.AddMilliseconds(500));
-                Console.WriteLine(response.Result);
-            }
-            catch (RpcException e) when (e.StatusCode == StatusCode.DeadlineExceeded)
-            {
-                Console.WriteLine("Error : " + e.Status.Detail);
-            }
+            //try
+            //{
+            //    var response = deadlineClient.Greetdeadline(new GreetdeadlineRequest() { Message = "Hello gRPC with deadlines :)" },
+            //                                                deadline: DateTime.UtcNow.AddMilliseconds(500));
+            //    Console.WriteLine(response.Result);
+            //}
+            //catch (RpcException e) when (e.StatusCode == StatusCode.DeadlineExceeded)
+            //{
+            //    Console.WriteLine("Error : " + e.Status.Detail);
+            //}
 
-            sqrtChannel.ShutdownAsync().Wait();
-            Console.ReadKey();
+            //sqrtChannel.ShutdownAsync().Wait();
+            //Console.ReadKey();
 
         }
-
 
 
         // 1) --- Unary API
