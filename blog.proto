@@ -10,11 +10,11 @@ message Blog {
 }
 
 message CreateBlogRequest {
-	Blog blog = 1;
+	Blog blog = 1; // no tiene id
 }
 
 message CreateBlogResponse {
-	Blog blog = 1;
+	Blog blog = 1; // tiene id
 }
 
 service BlogService {

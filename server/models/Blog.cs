@@ -390,6 +390,9 @@ namespace Blog {
     /// <summary>Field number for the "blog" field.</summary>
     public const int BlogFieldNumber = 1;
     private global::Blog.Blog blog_;
+    /// <summary>
+    /// no tiene id
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Blog.Blog Blog {
@@ -588,6 +591,9 @@ namespace Blog {
     /// <summary>Field number for the "blog" field.</summary>
     public const int BlogFieldNumber = 1;
     private global::Blog.Blog blog_;
+    /// <summary>
+    /// tiene id
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Blog.Blog Blog {

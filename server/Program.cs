@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Blog;
 
 namespace server
 {
@@ -19,8 +20,7 @@ namespace server
             {
                 server = new Server()
                 {
-                    Services = {                     
-                    },
+                    Services = { BlogService.BindService(new BlogServiceImpl()) },
                     Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
                 };
                 server.Start();
