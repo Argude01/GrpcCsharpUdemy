@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Protobuf Include="..\blog.proto">
+      <OutputDir>models/</OutputDir>
+    </Protobuf>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlogService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
