@@ -1,7 +1,4 @@
-﻿using Calculator;
-using Dummy;
-using Greet;
-using Grpc.Core;
+﻿using Grpc.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -22,35 +19,35 @@ namespace client
 
             // Testing GreetingService
             //var client = new DummyService.DummyServiceClient(channel);
-            var client = new GreetingService.GreetingServiceClient(channel);
+            //var client = new GreetingService.GreetingServiceClient(channel);
 
-            var greeting = new Greeting()
-            {
-                FirstName = "Deyanira",
-                LastName = "Gutierrez"
-            };
+            //var greeting = new Greeting()
+            //{
+            //    FirstName = "Deyanira",
+            //    LastName = "Gutierrez"
+            //};
 
-            var request = new GreetingRequest() { Greeting = greeting };
-            var response = client.Greet(request);
+            //var request = new GreetingRequest() { Greeting = greeting };
+            //var response = client.Greet(request);
 
-            Console.WriteLine("Response: " + response.Result);
-            channel.ShutdownAsync().Wait();
-            Console.ReadKey();
+            //Console.WriteLine("Response: " + response.Result);
+            //channel.ShutdownAsync().Wait();
+            //Console.ReadKey();
 
             // CalculatorService
-            Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
-            var calculatorClient = new CalculatorService.CalculatorServiceClient(calculatorChannel);
+            //Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
+            //var calculatorClient = new CalculatorService.CalculatorServiceClient(calculatorChannel);
 
-            var requestCalculator = new OperationRequest()
-            {
-                Number1 = 10,
-                Number2 = 3
-            };
+            //var requestCalculator = new OperationRequest()
+            //{
+            //    Number1 = 10,
+            //    Number2 = 3
+            //};
 
-            var responseCalculator = calculatorClient.Sum(requestCalculator);
-            Console.WriteLine(responseCalculator.Result);
-            calculatorChannel.ShutdownAsync().Wait();
-            Console.ReadKey();  
+            //var responseCalculator = calculatorClient.Sum(requestCalculator);
+            //Console.WriteLine(responseCalculator.Result);
+            //calculatorChannel.ShutdownAsync().Wait();
+            //Console.ReadKey();  
         }
     }
 }
