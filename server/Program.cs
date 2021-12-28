@@ -11,7 +11,7 @@ namespace server
 {
     internal class Program
     {
-        const int Port = 50051;
+        const int Port = 50052;
 
         static void Main(string[] args)
         {
