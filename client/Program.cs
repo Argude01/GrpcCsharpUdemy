@@ -7,83 +7,80 @@ namespace client
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Channel channel = new Channel("localhost", 50052, ChannelCredentials.Insecure);
 
-            channel.ConnectAsync().ContinueWith((task) =>
+            await channel.ConnectAsync().ContinueWith((task) =>
             {
                 if (task.Status == TaskStatus.RanToCompletion)
                     Console.WriteLine("The client connected successfully");
             });
 
-            // CreateBlog rpc method
-            //var clientCreate = new BlogService.BlogServiceClient(channel);
-            //var responseCreate = clientCreate.CreateBlog(new CreateBlogRequest
-            //{
-            //    Blog = new Blog.Blog()
-            //    {
-            //        AuthorId =  "Clement",
-            //        Title = "New Blog!",
-            //        Content = "Hello world, this is a new blog."
-            //    }
-            //});
-
-            //Console.WriteLine("The blog " + responseCreate.Blog.Id + " was created !");
-            //channel.ShutdownAsync().Wait();
-            //Console.ReadKey();
-
-
-            // ReadBlog rpc method
             var client = new BlogService.BlogServiceClient(channel);
 
-            try
+            //CreateBlog(client);
+            var newBlog = CreateBlog(client);
+
+            //ReadBlog(client);
+
+            UpdateBlog(client, newBlog);
+
+            channel.ShutdownAsync().Wait();
+            Console.ReadKey();
+        }
+
+        private static Blog.Blog CreateBlog(BlogService.BlogServiceClient client)
+        {
+            var response = client.CreateBlog(new CreateBlogRequest()
+            {
+                Blog = new Blog.Blog()
+                {
+                    AuthorId = "Deyanira",
+                    Title = "New blog!",
+                    Content = "Hello world, this is a new blog"
+                }
+            });
+
+            Console.WriteLine("The blog " + response.Blog.Id + "was created !");
+
+            return response.Blog;
+        }
+
+        private static void ReadBlog(BlogService.BlogServiceClient client)
+        {
+            try 
             {
                 var response = client.ReadBlog(new ReadBlogRequest()
                 {
                     BlogId = "61cb215c94427875cf2e6bba"
                 });
-                Console.WriteLine("Response: " + response.Blog.ToString());
             }
             catch (RpcException e)
             {
                 Console.WriteLine(e.Status.Detail);
             }
+        }
 
-            channel.ShutdownAsync().Wait();
-            Console.ReadKey();
+        private static void UpdateBlog(BlogService.BlogServiceClient client, Blog.Blog blog)
+        {
+            try
+            {
+                blog.AuthorId = "Updated author";
+                blog.Title = "Updated title";
+                blog.Content = "Updated content";
 
-            // Testing GreetingService
-            //var client = new DummyService.DummyServiceClient(channel);
-            //var client = new GreetingService.GreetingServiceClient(channel);
+                var response = client.UpdateBlog(new UpdateBlogRequest()
+                {
+                    Blog = blog
+                });
 
-            //var greeting = new Greeting()
-            //{
-            //    FirstName = "Deyanira",
-            //    LastName = "Gutierrez"
-            //};
-
-            //var request = new GreetingRequest() { Greeting = greeting };
-            //var response = client.Greet(request);
-
-            //Console.WriteLine("Response: " + response.Result);
-            //channel.ShutdownAsync().Wait();
-            //Console.ReadKey();
-
-            // CalculatorService
-            //Channel calculatorChannel = new Channel(target, ChannelCredentials.Insecure);
-            //var calculatorClient = new CalculatorService.CalculatorServiceClient(calculatorChannel);
-
-            //var requestCalculator = new OperationRequest()
-            //{
-            //    Number1 = 10,
-            //    Number2 = 3
-            //};
-
-            //var responseCalculator = calculatorClient.Sum(requestCalculator);
-            //Console.WriteLine(responseCalculator.Result);
-            //calculatorChannel.ShutdownAsync().Wait();
-            //Console.ReadKey();  
+                Console.WriteLine(response.Blog.ToString());
+            }
+            catch(RpcException e)
+            {
+                Console.WriteLine(e.Status.Detail);
+            }
         }
     }
 }
