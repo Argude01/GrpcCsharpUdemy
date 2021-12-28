@@ -41,7 +41,7 @@ namespace client
             {
                 var response = client.ReadBlog(new ReadBlogRequest()
                 {
-                    BlogId = "61cb215c94427875cf2e6bbc"
+                    BlogId = "61cb215c94427875cf2e6bba"
                 });
                 Console.WriteLine("Response: " + response.Blog.ToString());
             }
