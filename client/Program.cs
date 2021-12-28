@@ -18,40 +18,40 @@ namespace client
             });
 
             // CreateBlog rpc method
-            var clientCreate = new BlogService.BlogServiceClient(channel);
-            var responseCreate = clientCreate.CreateBlog(new CreateBlogRequest
-            {
-                Blog = new Blog.Blog()
-                {
-                    AuthorId =  "Clement",
-                    Title = "New Blog!",
-                    Content = "Hello world, this is a new blog."
-                }
-            });
+            //var clientCreate = new BlogService.BlogServiceClient(channel);
+            //var responseCreate = clientCreate.CreateBlog(new CreateBlogRequest
+            //{
+            //    Blog = new Blog.Blog()
+            //    {
+            //        AuthorId =  "Clement",
+            //        Title = "New Blog!",
+            //        Content = "Hello world, this is a new blog."
+            //    }
+            //});
 
-            Console.WriteLine("The blog " + responseCreate.Blog.Id + " was created !");
-            channel.ShutdownAsync().Wait();
-            Console.ReadKey();
+            //Console.WriteLine("The blog " + responseCreate.Blog.Id + " was created !");
+            //channel.ShutdownAsync().Wait();
+            //Console.ReadKey();
 
 
             // ReadBlog rpc method
-            //var client = new BlogService.BlogServiceClient(channel);
-            
-            //try
-            //{
-            //    var response = client.ReadBlog(new ReadBlogRequest()
-            //    {
-            //        BlogId = ""
-            //    });
-            //    Console.WriteLine(response.Blog.ToString());
-            //}
-            //catch (RpcException e)
-            //{
-            //    Console.WriteLine(e.Status.Detail);
-            //}
+            var client = new BlogService.BlogServiceClient(channel);
 
-            //channel.ShutdownAsync().Wait();
-            //Console.ReadKey();
+            try
+            {
+                var response = client.ReadBlog(new ReadBlogRequest()
+                {
+                    BlogId = "61cb215c94427875cf2e6bbc"
+                });
+                Console.WriteLine("Response: " + response.Blog.ToString());
+            }
+            catch (RpcException e)
+            {
+                Console.WriteLine(e.Status.Detail);
+            }
+
+            channel.ShutdownAsync().Wait();
+            Console.ReadKey();
 
             // Testing GreetingService
             //var client = new DummyService.DummyServiceClient(channel);
