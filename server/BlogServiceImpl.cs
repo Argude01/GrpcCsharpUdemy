@@ -101,7 +101,6 @@ namespace server
 
         }
 
-        //public override async Task<ListBlogResponse> ListBlog(ListBlogRequest request, ServerCallContext context)
         public override async Task ListBlog(ListBlogRequest request, IServerStreamWriter<ListBlogResponse> responseStream, ServerCallContext context)
         {
             var filter = new FilterDefinitionBuilder<BsonDocument>().Empty;
